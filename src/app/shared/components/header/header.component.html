@@ -1,0 +1,36 @@
+<div class="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
+
+  <!-- Contenido de la caja de buscar -->
+
+  <div class="flex-1">
+    <div class="flex items-center">
+      <div class="relative w-full md:w-80 lg:w-96 h-10">
+        <input
+          class="peer w-full h-full bg-transparent text-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-10 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-blue-500"
+          placeholder="">
+        <label
+          class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal peer-placeholder-shown:text-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-blue-gray-400 peer-focus:text-blue-500 before:border-blue-gray-200 peer-focus:before:border-blue-500 after:border-blue-gray-200 peer-focus:after:border-blue-500">Buscar</label>
+        <!-- Ícono de búsqueda -->
+        <span class="absolute inset-y-0 right-3 flex items-center">
+          <img src="https://cdn.icon-icons.com/icons2/849/PNG/512/search_locate_find_icon-icons.com_67287.png"
+            alt="Buscar" class="w-7 h-7">
+        </span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Botón de acción Cerrar Sesión -->
+  <button (click)="logout()"
+    class="font-sans font-bold text-xs py-3 rounded-lg text-gray-500 hover:bg-blue-gray-500/10 active:bg-blue-gray-500/30 items-center gap-1 px-4 hidden xl:flex">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-blue-gray-500">
+      <path fill-rule="evenodd"
+        d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+        clip-rule="evenodd"></path>
+    </svg>
+    Cerrar Sesión
+  </button>
+
+</div>

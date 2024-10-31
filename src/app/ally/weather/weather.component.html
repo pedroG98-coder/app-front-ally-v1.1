@@ -1,0 +1,163 @@
+<!-- Cargar el CSS de Font Awesome para usar iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<!-- Contenedor principal de la app ally -->
+<div class="relative pt-2 lg:pt-2 min-h-screen">
+
+
+    <div class="bg-cover w-full flex justify-center items-center">
+
+        <!-- Contenedor-->
+        <div class="w-full bg-white p-5 bg-opacity-40 backdrop-filter backdrop-blur-lg">
+            <div class="w-12/12 mx-auto rounded-2xl bg-white p-5 bg-opacity-40 backdrop-filter backdrop-blur-lg">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-center px-2 mx-auto">
+
+
+
+                    <!-- Artículo 1: País Seleccionado -->
+                    <article
+                        class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                        <strong>Pais Seleccionado</strong>
+                        <hr class="my-4 border-gray-300">
+                        <h5>{{ weatherData?.location.name }}</h5>
+                        <p>Capital: {{ weatherData?.location.region }}</p>
+                        <p>Latitud: {{ weatherData?.location.lat }}</p>
+                        <p>Longitud: {{ weatherData?.location.lon }}</p>
+                    </article>
+
+
+
+                    <!-- Artículo 2: Clima -->
+
+                    <article
+                        class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                        <strong>Clima</strong>
+                        <hr class="my-4 border-gray-300">
+                        <div class="flex items-center space-x-4">
+                            <!-- Imagen del clima -->
+                            <img src="https://cdn.weatherapi.com/weather/64x64/night/116.png" alt="Icono del clima"
+                                class="w-12 h-12">
+                            <!-- Información del clima -->
+                            <div>
+                                <h5>{{ weatherData?.current.temp_c }}° C {{ weatherData?.current.condition.text }}</h5>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+                    <!-- Artículo 3: Países Disponibles -->
+                    <article
+                        class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                        <strong class="text-lg font-semibold">Paises Disponibles</strong>
+                        <hr class="my-4 border-gray-300">
+                        <ul class="space-y-2">
+                            <!-- Lista de países con botón para seleccionar -->
+                            <li class="flex items-center space-x-2">
+                                <img src="https://flagcdn.com/w320/mx.png" alt="Bandera de México" class="w-6 h-4">
+                                <button (click)="onCountryChange('Mexico')"
+                                    class="text-blue-500 hover:underline">México</button>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <img src="https://flagcdn.com/w320/fr.png" alt="Bandera de Francia" class="w-6 h-4">
+                                <button (click)="onCountryChange('France')"
+                                    class="text-blue-500 hover:underline">Francia</button>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <img src="https://flagcdn.com/w320/co.png" alt="Bandera de Colombia" class="w-6 h-4">
+                                <button (click)="onCountryChange('Colombia')"
+                                    class="text-blue-500 hover:underline">Colombia</button>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <img src="https://flagcdn.com/w320/ca.png" alt="Bandera de Canada" class="w-6 h-4">
+                                <button (click)="onCountryChange('Canada')"
+                                    class="text-blue-500 hover:underline">Canada</button>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <img src="https://flagcdn.com/w320/us.png" alt="Bandera de Estados Unidos" class="w-6 h-4">
+                                <button (click)="onCountryChange('USA')"
+                                    class="text-blue-500 hover:underline">Estados Unidos</button>
+                            </li>
+                        </ul>
+                    </article>
+
+
+
+
+                    <!-- Artículo 4: Zona Horaria -->
+                    <article class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                        <strong class="text-lg font-semibold">Zona Horaria</strong>
+                        <hr class="my-4 border-gray-300">
+                        <ul class="space-y-2">
+                            <li *ngFor="let timeZone of availableTimeZones" class="flex items-center space-x-2">
+                                <img [src]="timeZone.flag" alt="Bandera" class="w-6 h-4">
+                                <button (click)="onTimeZoneChange(timeZone.timeZone)" class="text-blue-500 hover:underline">{{ timeZone.timeZone }}</button>
+                            </li>
+                        </ul>
+                    </article>
+
+
+
+
+
+                    <!-- Artículo 5 Hora -->
+                    <article
+                        class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                        <strong>Hora Local</strong>
+                        <hr class="my-4 border-gray-300">
+                        <h5>{{ weatherData?.location.localtime }}</h5>
+                    </article>
+
+
+
+
+
+                    <!-- Artículo 6: Tareas -->
+                    <article
+                        class="bg-white p-6 mb-6 shadow transition duration-300 group transform hover:-translate-y-2 hover:shadow-2xl rounded-2xl cursor-pointer border">
+                        <div class="flex justify-between items-center">
+                            <strong>Tareas</strong>
+                            <!-- Botones para agregar y borrar tareas -->
+                            <div class="flex space-x-2">
+                                <button id="openTaskModalBtn"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+                                    <i class="fas fa-plus"></i> <!-- Icono de agregar (+) -->
+                                </button>
+                                <button (click)="clearTasks()"
+                                    class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700 ml-2">
+                                    <i class="fas fa-trash"></i> <!-- Icono de borrar -->
+                                </button>
+                            </div>
+                        </div>
+                        <hr class="my-4 border-gray-300">
+                        <!-- Lista de tareas -->
+                        <ul id="taskList"></ul>
+                    </article>
+
+
+
+
+
+                    <!-- Modal de agregar tarea -->
+                    <div id="taskModal"
+                        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+                        <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+                            <h3 class="text-lg font-semibold mb-4">Agregar Nueva Tarea</h3>
+                            <input id="taskInput" type="text" class="border p-2 w-full mb-4"
+                                placeholder="Escribe tu tarea">
+                            <div class="flex justify-end space-x-4">
+                                <button id="closeTaskModalBtn"
+                                    class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancelar</button>
+                                <button id="saveTaskBtn"
+                                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin-->
+
+            </div>
+        </div>
+    </div>
+</div>

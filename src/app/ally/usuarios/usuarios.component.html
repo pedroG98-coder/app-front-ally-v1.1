@@ -1,0 +1,127 @@
+<!-- component -->
+
+<link rel="stylesheet"
+    href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
+
+<section class="py-1 bg-blueGray-50">
+    <div class="w-full xl:w-full mb-12 xl:mb-0 px-4 mx-auto mt-8">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
+
+
+
+            <!-- Encabezado de la tabla -->
+            <div class="rounded-t mb-0 px-4 py-3 border-0">
+                <div class="flex flex-wrap items-center">
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                        <h3 class="font-semibold text-base text-blueGray-700">Usuarios</h3>
+                    </div>
+                </div>
+            </div>
+
+
+
+             <!-- Contenedor de la tabla -->
+            <div class="block w-full overflow-x-auto">
+                <table class="items-center bg-transparent w-full border-collapse ">
+                    <thead>
+                        <tr>
+                            <!-- Encabezados de las columnas de la tabla -->
+                            <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                ID
+                            </th>
+                            <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Foto Perfil
+                            </th>
+                            <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Username
+                            </th>
+                            <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Nombre Completo
+                            </th>
+                            <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Email
+                            </th>
+                            <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Fecha Registro
+                            </th>
+                            <th
+                                class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                Último Lógin
+                            </th>
+                        </tr>
+                    </thead>
+                    <!-- Fin Encabezados de las columnas de la tabla -->
+
+
+
+
+
+                    <tbody>
+                        <!-- Iteramos sobre la lista de usuarios-->
+                        <tr *ngFor="let usuario of usuarios">
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ usuario.id }}
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                <img [src]="usuario.foto_perfil ? usuario.foto_perfil : 'https://img.freepik.com/vector-premium/icono-circulo-usuario-anonimo-ilustracion-vector-estilo-plano-sombra_520826-1931.jpg'"
+                                    alt="Foto de {{ usuario.nombre_completo }}" class="rounded-full w-10 h-10">
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ usuario.username }}
+                            </td>
+                            <th
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700">
+                                {{ usuario.nombre_completo }}
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ usuario.email }}
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ usuario.fecha_registro }}
+                            </td>
+                            <td
+                                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                {{ usuario.ultimo_login }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+
+            <!-- Fin Contenedor de la tabla -->
+        </div>
+        
+
+         <!-- Inicio paginacion -->
+        <div class="flex justify-between items-center mt-4">
+            <button 
+                (click)="cambiarPagina(currentPage - 1)" 
+                [disabled]="currentPage === 1" 
+                class="bg-blue-800 text-white px-4 py-2 rounded">
+                Página Anterior
+            </button>
+            <span class="text-blueGray-700">Página {{ currentPage }} de {{ totalPages }}</span>
+            <button 
+                (click)="cambiarPagina(currentPage + 1)" 
+                [disabled]="currentPage === totalPages" 
+                class="bg-blue-800 text-white px-4 py-2 rounded">
+                Página Siguiente
+            </button>
+        </div>
+        <!-- Fin paginacion -->
+
+    </div>
+
+</section>
